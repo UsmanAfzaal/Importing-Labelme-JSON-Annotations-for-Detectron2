@@ -61,13 +61,3 @@ from detectron2.data.datasets.coco import convert_to_coco_json
 
 for f in ["train", "test"]:
     convert_to_coco_json("Dataset_" + f, "/home/path/Dataset_{}.json".format(f), allow_cached=False) # Saves 2 files named "Dataset_train" and "Dataset_test"
-
-
-
-# Use the following code to directly register your dataset using the generated json files during training
-
-from detectron2.data.datasets import register_coco_instances
-
-register_coco_instances("Dataset_train", {}, "/home/path/Dataset_train.json", "/home/path/datasetdirectory/train/") # Registers a dataset named "Dataset_train" by taking annotations from the "Dataset_train.json" file.
-register_coco_instances("Dataset_test", {}, "/home/path/Dataset_test.json", "/home/path/datasetdirectory/test/") # Registers a dataset named "Dataset_test" by taking annotations from the "Dataset_test.json" file.
-dataset_metadata = MetadataCatalog.get("Dataset_train").set(thing_classes=['Class_one', 'Class_two', 'Class_three'])
